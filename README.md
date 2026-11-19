@@ -1,49 +1,48 @@
 # JanOS 15
 
-JanOS 15 is an original mobile interface project written in C++ with Qt 6 and Qt Quick (QML). It takes inspiration from the clean, layered visual language of early-2020s mobile operating systems while using its own name, logo, icons, colors, and implementation.
+JanOS is an independent mobile-interface project with two coordinated implementations.
 
-> JanOS is an independent project and is not affiliated with Apple. It does not contain Apple's proprietary iOS source code or assets.
+- **Mobile:** C++20, Qt 6 and Qt Quick (QML), on the `main` branch.
+- **Web:** HTML, CSS and JavaScript, on the `webb` branch in `web/`.
 
-## Current starter features
-- Full-screen mobile home screen
-- Original JanOS "J" mark and app icon set
-- Status bar with live clock
-- App grid and dock
-- Swipe-up style app drawer interaction
-- Control Center panel with interactive demo toggles
-- Lock screen with clock, date and unlock action
-- Notification shade with sample notification cards
-- Recent-app switcher with selectable app cards
-- Settings panel with theme and wallpaper controls
-- Responsive layouts for portrait mobile screens
+The two editions share the same design direction, app set, navigation concepts and setup preferences. JanOS is an original interface project, not an operating-system replacement.
 
-## Stack
-- C++20
-- Qt 6 (Core, Gui, Quick, Qml)
-- Qt Quick Controls
-- CMake
+> JanOS is not affiliated with Apple and does not contain Apple's proprietary iOS source code or assets.
 
-## Build
-Install Qt 6 with the Android kit and Android SDK/NDK, then open this project in Qt Creator. Select an Android Qt kit and build/deploy to a device.
+## Mobile prototype
 
-For a desktop preview, configure with a desktop Qt 6 kit:
+Implemented components:
+- Home screen, status bar, app grid and dock
+- Lock screen, notification shade, Control Center and recent-app switcher
+- First-run setup assistant with welcome, language/region, simulated Wi-Fi, privacy choices, device name and completion
+- Setup preferences persisted using Qt Settings
+- Wallpaper selection and basic appearance controls
+- C++20 application entry point with Qt Quick/QML
+
+Build with Qt 6.4 or later, CMake 3.21 or later, and a matching desktop or Android Qt kit. For a desktop preview:
+
 ```bash
 cmake -S . -B build
 cmake --build build
 ```
 
-## Project layout
+For Android, install the Qt Android kit and Android SDK/NDK, then open the project in Qt Creator and deploy using the Android kit.
+
+## Web prototype
+
+Open `web/index.html` in a modern browser or publish the `web/` directory as a static site. It includes the first-run setup flow, home screen, app previews, settings pages, Control Center, notifications, lock screen and local preference storage.
+
+## Important limitations
+
+This is still a prototype, not a production operating system. Wi-Fi and Bluetooth controls are simulated; camera, telephony, messages, weather data, native permissions, app installation, secure accounts, updates and hardware integration are not implemented. The project has not yet been compiled and device-tested in this workspace.
+
+## Layout
+
 ```
 janios/
 ├── CMakeLists.txt
 ├── README.md
-├── src/main.cpp
-└── qml/Main.qml
+├── src/
+├── qml/
+└── web/
 ```
-
-## Roadmap
-1. Add richer settings pages and persistent preferences
-2. Build individual demo app screens (Phone, Messages, Photos, Camera, Browser)
-3. Improve touch gestures and accessibility
-4. Add Android packaging configuration and device testing
-5. Add real app lifecycle only where supported by the host platform
