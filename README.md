@@ -1,55 +1,41 @@
-# JanOS 15
+# NEXUS 12
 
-JanOS is an independent mobile-interface project with two coordinated implementations:
+A browser-based desktop environment inspired by modern operating systems. NEXUS 12 is an independent web project, not a Microsoft product.
 
-- **Mobile:** C++20 with Qt 6 and Qt Quick (QML), in the `main` branch.
-- **Web:** HTML, CSS and JavaScript, in the `webb` branch under `web/`.
-
-The visual language, app names, navigation model and settings concepts are designed to stay aligned across both editions. JanOS is an original project, not an operating-system replacement.
-
-> JanOS is not affiliated with Apple and does not contain Apple's proprietary iOS source code or assets.
-
-## Web edition
-
-Open `web/index.html` in a modern browser or publish the repository's `web/` directory as a static site.
-
-Current web prototype:
-- First-run setup assistant: welcome, language/region, simulated Wi-Fi, privacy choices, device name and completion
-- Home screen, app grid and dock
-- App previews for Phone, Messages, Photos, Camera, Browser, Music, Weather, Clock, Files, Calendar and Search
-- Settings pages for profile, appearance, network, notifications, privacy, language/region, lock screen and About
-- Wallpaper and dark/light appearance preferences
-- Control Center, notification shade, recent-app switcher and lock screen
-- Local preference persistence using browser local storage
-- Responsive phone-sized layout and touch navigation
-
-Network radios, camera, telephony, messaging services, weather data and native operating-system permissions are placeholders. The web edition cannot control hardware or replace Android/iOS.
-
-## Mobile edition
-
-The mobile implementation uses C++20, Qt 6 Quick/QML and CMake. Install Qt 6 with the Android kit and Android SDK/NDK, then open the project in Qt Creator and select an Android Qt kit.
-
-For a desktop preview:
+## Run locally
 ```bash
-cmake -S . -B build
-cmake --build build
+npm install
+npm run dev
 ```
 
-## Project layout
+## Features
+- First-run setup wizard and simulated local account sign-in
+- Desktop, taskbar, Start menu, draggable/resizable windows
+- Settings, themes, wallpaper selection and display preferences
+- File manager, Notes, Calculator, Calendar, Clock, Terminal
+- Built-in browser with NEXUS-owned pages and external URL navigation
+- Alternate Fireworks AI browser (configure endpoint and API key in Settings)
+- App Center with installable `.react` app packages
 
+## .react package format
+A `.react` file is a JSON app manifest rendered by the NEXUS component runtime. It is not arbitrary executable JavaScript.
+
+```json
+{
+  "format": "nexus-react-app",
+  "version": 1,
+  "id": "hello-world",
+  "name": "Hello World",
+  "icon": "✨",
+  "description": "A sample app",
+  "screen": {
+    "type": "column",
+    "children": [
+      { "type": "heading", "text": "Hello from NEXUS" },
+      { "type": "text", "text": "This app was installed from a .react package." }
+    ]
+  }
+}
 ```
-janios/
-├── CMakeLists.txt
-├── README.md
-├── src/main.cpp
-├── qml/
-└── web/
-    ├── index.html
-    ├── styles.css
-    ├── app.js
-    └── manifest.webmanifest
-```
 
-## Status
-
-The web edition is a functional interface prototype. The mobile edition is a Qt/QML prototype. Neither has been compiled and device-tested as a production operating system yet; hardware integration, secure user accounts, real networking, app installation, permissions, updates and full accessibility remain future engineering work.
+Installed app manifests are stored locally in the browser. This is a web desktop simulation, not a bootable operating system. Microsoft sign-in is simulated and does not authenticate with Microsoft. Fireworks connectivity requires a compatible endpoint and a user-provided API key.
