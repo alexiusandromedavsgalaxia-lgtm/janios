@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt.labs.settings 1.1
 
 ApplicationWindow {
     id: window
@@ -20,6 +21,26 @@ ApplicationWindow {
     property bool settingsOpen: false
     property bool darkMode: true
     property int wallpaperIndex: 0
+    property bool setupComplete: false
+    property string selectedLanguage: "English"
+    property string selectedRegion: "Spain"
+    property string deviceName: "JanOS User"
+    property bool diagnosticsEnabled: false
+    property bool notificationsEnabled: true
+    property bool wifiEnabled: true
+
+    Settings {
+        id: persistentSettings
+        property bool setupComplete: false
+        property string selectedLanguage: "English"
+        property string selectedRegion: "Spain"
+        property string deviceName: "JanOS User"
+        property bool diagnosticsEnabled: false
+        property bool notificationsEnabled: true
+        property bool wifiEnabled: true
+    }
+
+    Component.onCompleted: window.setupComplete = persistentSettings.setupComplete
 
     readonly property var wallpapers: [
         ["#152b62", "#7c4d9b", "#f08a85"],
@@ -358,6 +379,28 @@ ApplicationWindow {
         }
     }
 
+
+    SetupWizard {
+        z: 40
+        visible: !window.setupComplete
+        onCompleted: function(language, region, name, diagnostics, notificationsEnabled, wifiEnabled) {
+            window.selectedLanguage = language
+            window.selectedRegion = region
+            window.deviceName = name
+            window.diagnosticsEnabled = diagnostics
+            window.notificationsEnabled = notificationsEnabled
+            window.wifiEnabled = wifiEnabled
+            persistentSettings.selectedLanguage = language
+            persistentSettings.selectedRegion = region
+            persistentSettings.deviceName = name
+            persistentSettings.diagnosticsEnabled = diagnostics
+            persistentSettings.notificationsEnabled = notificationsEnabled
+            persistentSettings.wifiEnabled = wifiEnabled
+            persistentSettings.setupComplete = true
+            window.setupComplete = true
+            window.showToast("JanOS is ready")
+        }
+    }
 
     AppSwitcher {
         z: 9
