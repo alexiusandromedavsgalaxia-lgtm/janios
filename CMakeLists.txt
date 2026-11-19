@@ -29,8 +29,3 @@ target_link_libraries(janios
         Qt6::Qml
 )
 
-if(ANDROID)
-    set_property(TARGET janios PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-        ${CMAKE_CURRENT_SOURCE_DIR}/android
-    )
-endif()
