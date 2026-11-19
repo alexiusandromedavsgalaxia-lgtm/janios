@@ -13,6 +13,8 @@ ApplicationWindow {
     color: "#10182d"
 
     property bool controlCenterOpen: false
+    property bool notificationsOpen: false
+    property bool locked: true
     property bool appDrawerOpen: false
     property bool settingsOpen: false
     property bool darkMode: true
@@ -355,12 +357,32 @@ ApplicationWindow {
         }
     }
 
-    // Top-edge gesture target opens the quick panel.
+    // Lock screen and notification shade.
+    LockScreen {
+        z: 30
+        visible: window.locked
+        onUnlocked: window.locked = false
+    }
+
+    NotificationShade {
+        z: 8
+        visible: window.notificationsOpen
+        onClosed: window.notificationsOpen = false
+    }
+
+    // Top edge: left opens notifications, right opens quick settings.
     MouseArea {
         z: 10
         x: 0; y: 0
-        width: parent.width
-        height: 12
+        width: parent.width / 2
+        height: 16
+        onClicked: window.notificationsOpen = true
+    }
+    MouseArea {
+        z: 10
+        x: parent.width / 2; y: 0
+        width: parent.width / 2
+        height: 16
         onClicked: window.controlCenterOpen = true
     }
 
