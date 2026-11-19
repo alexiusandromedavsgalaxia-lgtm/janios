@@ -20,6 +20,7 @@ set_source_files_properties(qml/Main.qml PROPERTIES QT_RESOURCE_ALIAS Main.qml)
 set_source_files_properties(qml/LockScreen.qml PROPERTIES QT_RESOURCE_ALIAS LockScreen.qml)
 set_source_files_properties(qml/NotificationShade.qml PROPERTIES QT_RESOURCE_ALIAS NotificationShade.qml)
 set_source_files_properties(qml/AppSwitcher.qml PROPERTIES QT_RESOURCE_ALIAS AppSwitcher.qml)
+set_source_files_properties(qml/SetupWizard.qml PROPERTIES QT_RESOURCE_ALIAS SetupWizard.qml)
 
 qt_add_qml_module(janios
     URI JanOS
@@ -29,6 +30,7 @@ qt_add_qml_module(janios
         qml/LockScreen.qml
         qml/NotificationShade.qml
         qml/AppSwitcher.qml
+        qml/SetupWizard.qml
 )
 
 target_link_libraries(janios
