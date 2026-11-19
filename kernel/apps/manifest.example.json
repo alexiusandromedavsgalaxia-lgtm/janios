@@ -1,0 +1,14 @@
+{
+  "format": "janpkg",
+  "formatVersion": 1,
+  "id": "org.janos.hello",
+  "name": "Hello JanOS",
+  "version": "1.0.0",
+  "minimumApi": 1,
+  "entry": "app.wasm",
+  "permissions": [],
+  "publisher": {
+    "name": "JanOS Example",
+    "keyId": "REPLACE_WITH_TRUSTED_KEY_ID"
+  }
+}
