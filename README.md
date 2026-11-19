@@ -1,49 +1,55 @@
 # JanOS 15
 
-JanOS 15 is an original mobile interface project written in C++ with Qt 6 and Qt Quick (QML). It takes inspiration from the clean, layered visual language of early-2020s mobile operating systems while using its own name, logo, icons, colors, and implementation.
+JanOS is an independent mobile-interface project with two coordinated implementations:
 
-> JanOS is an independent project and is not affiliated with Apple. It does not contain Apple's proprietary iOS source code or assets.
+- **Mobile:** C++20 with Qt 6 and Qt Quick (QML), in the `main` branch.
+- **Web:** HTML, CSS and JavaScript, in the `webb` branch under `web/`.
 
-## Current starter features
-- Full-screen mobile home screen
-- Original JanOS "J" mark and app icon set
-- Status bar with live clock
-- App grid and dock
-- Swipe-up style app drawer interaction
-- Control Center panel with interactive demo toggles
-- Lock screen with clock, date and unlock action
-- Notification shade with sample notification cards
-- Recent-app switcher with selectable app cards
-- Settings panel with theme and wallpaper controls
-- Responsive layouts for portrait mobile screens
+The visual language, app names, navigation model and settings concepts are designed to stay aligned across both editions. JanOS is an original project, not an operating-system replacement.
 
-## Stack
-- C++20
-- Qt 6 (Core, Gui, Quick, Qml)
-- Qt Quick Controls
-- CMake
+> JanOS is not affiliated with Apple and does not contain Apple's proprietary iOS source code or assets.
 
-## Build
-Install Qt 6 with the Android kit and Android SDK/NDK, then open this project in Qt Creator. Select an Android Qt kit and build/deploy to a device.
+## Web edition
 
-For a desktop preview, configure with a desktop Qt 6 kit:
+Open `web/index.html` in a modern browser or publish the repository's `web/` directory as a static site.
+
+Current web prototype:
+- First-run setup assistant: welcome, language/region, simulated Wi-Fi, privacy choices, device name and completion
+- Home screen, app grid and dock
+- App previews for Phone, Messages, Photos, Camera, Browser, Music, Weather, Clock, Files, Calendar and Search
+- Settings pages for profile, appearance, network, notifications, privacy, language/region, lock screen and About
+- Wallpaper and dark/light appearance preferences
+- Control Center, notification shade, recent-app switcher and lock screen
+- Local preference persistence using browser local storage
+- Responsive phone-sized layout and touch navigation
+
+Network radios, camera, telephony, messaging services, weather data and native operating-system permissions are placeholders. The web edition cannot control hardware or replace Android/iOS.
+
+## Mobile edition
+
+The mobile implementation uses C++20, Qt 6 Quick/QML and CMake. Install Qt 6 with the Android kit and Android SDK/NDK, then open the project in Qt Creator and select an Android Qt kit.
+
+For a desktop preview:
 ```bash
 cmake -S . -B build
 cmake --build build
 ```
 
 ## Project layout
+
 ```
 janios/
 ├── CMakeLists.txt
 ├── README.md
 ├── src/main.cpp
-└── qml/Main.qml
+├── qml/
+└── web/
+    ├── index.html
+    ├── styles.css
+    ├── app.js
+    └── manifest.webmanifest
 ```
 
-## Roadmap
-1. Add richer settings pages and persistent preferences
-2. Build individual demo app screens (Phone, Messages, Photos, Camera, Browser)
-3. Improve touch gestures and accessibility
-4. Add Android packaging configuration and device testing
-5. Add real app lifecycle only where supported by the host platform
+## Status
+
+The web edition is a functional interface prototype. The mobile edition is a Qt/QML prototype. Neither has been compiled and device-tested as a production operating system yet; hardware integration, secure user accounts, real networking, app installation, permissions, updates and full accessibility remain future engineering work.
