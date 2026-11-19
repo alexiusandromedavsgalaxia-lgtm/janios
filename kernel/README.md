@@ -13,7 +13,7 @@ This is a kernel bring-up milestone, **not yet an Android-flashable image**. And
 Use an AArch64 bare-metal toolchain (for example `aarch64-none-elf-gcc/g++`) and CMake:
 
 ```sh
-cmake -S kernel -B build/kernel -DCMAKE_TOOLCHAIN_FILE=cmake/aarch64-none-elf.cmake
+cmake -S kernel -B build/kernel -DCMAKE_TOOLCHAIN_FILE=kernel/cmake/aarch64-none-elf.cmake
 cmake --build build/kernel
 ```
 
