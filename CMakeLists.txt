@@ -16,6 +16,10 @@ qt_add_executable(janios
     src/main.cpp
 )
 
+set_source_files_properties(qml/Main.qml PROPERTIES QT_RESOURCE_ALIAS Main.qml)
+set_source_files_properties(qml/LockScreen.qml PROPERTIES QT_RESOURCE_ALIAS LockScreen.qml)
+set_source_files_properties(qml/NotificationShade.qml PROPERTIES QT_RESOURCE_ALIAS NotificationShade.qml)
+
 qt_add_qml_module(janios
     URI JanOS
     VERSION 1.0
