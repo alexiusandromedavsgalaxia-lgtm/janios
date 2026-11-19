@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QQuickStyle::setStyle(QStringLiteral("Basic"));
 
     QQmlApplicationEngine engine;
-    const QUrl mainUrl(QStringLiteral("qrc:/qt/qml/JanOS/qml/Main.qml"));
+    const QUrl mainUrl(QStringLiteral("qrc:/qt/qml/JanOS/Main.qml"));
 
     QObject::connect(
         &engine,
