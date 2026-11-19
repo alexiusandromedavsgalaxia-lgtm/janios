@@ -1,50 +1,41 @@
-# JanOS
+# NEXUS 12
 
-JanOS is an independent mobile operating-system project with three separate tracks:
+A browser-based desktop environment inspired by modern operating systems. NEXUS 12 is an independent web project, not a Microsoft product.
 
-- **Independent kernel:** freestanding C++20 and AArch64 bring-up under `kernel/`.
-- **Mobile shell prototype:** C++20, Qt 6 and Qt Quick (QML), on `main`.
-- **Web edition:** HTML, CSS and JavaScript, on the `webb` branch in `web/`. This is a browser companion, not a bootable OS.
-
-## Independent kernel status
-
-The first kernel milestone targets **QEMU virt on ARM64**. It includes an AArch64 entry point, stack/BSS initialization, a linker layout and PL011 serial output. The intended serial banner is `JanOS kernel: ARM64 bring-up`.
-
-Build instructions, architecture boundaries and the Android port plan are in [kernel/README.md](kernel/README.md) and [kernel/ARCHITECTURE.md](kernel/ARCHITECTURE.md).
-
-**Important:** the kernel has not been compiled or boot-tested here. It is not yet a flashable Android image and does not yet contain a scheduler, memory manager, drivers, filesystem, app runtime or Android compatibility layer. QEMU ARM64 is the initial bring-up target; a real phone requires a specific supported model and device-specific bootloader, device tree and drivers.
-
-## Mobile shell prototype
-
-The Qt Quick prototype currently contains:
-- Home screen, status bar, app grid and dock
-- Lock screen, notification shade, Control Center and recent-app switcher
-- First-run setup assistant and persistent setup preferences
-- Basic appearance and wallpaper controls
-
-Build with Qt 6.4 or later, CMake 3.21 or later, and a matching desktop or Android Qt kit. For a desktop preview:
-
-```sh
-cmake -S . -B build
-cmake --build build
+## Run locally
+```bash
+npm install
+npm run dev
 ```
 
-For Android, install the Qt Android kit and Android SDK/NDK, then open the project in Qt Creator and deploy using the Android kit. This deploys the current shell prototype as an Android app; it does not install the independent kernel.
+## Features
+- First-run setup wizard and simulated local account sign-in
+- Desktop, taskbar, Start menu, draggable/resizable windows
+- Settings, themes, wallpaper selection and display preferences
+- File manager, Notes, Calculator, Calendar, Clock, Terminal
+- Built-in browser with NEXUS-owned pages and external URL navigation
+- Alternate Fireworks AI browser (configure endpoint and API key in Settings)
+- App Center with installable `.react` app packages
 
-## Application compatibility plan
+## .react package format
+A `.react` file is a JSON app manifest rendered by the NEXUS component runtime. It is not arbitrary executable JavaScript.
 
-- **JanOS native apps:** the proposed `.janpkg` format uses a JSON manifest, a WebAssembly entry module and packaged assets. The example manifest is in `kernel/apps/manifest.example.json`. A secure package manager and sandboxed runtime are not implemented yet.
-- **Android apps:** APK compatibility requires Android userspace/framework and runtime components, plus the necessary kernel interfaces. It is a separate future compatibility track and is not provided by the initial bare-metal kernel.
-- **Apple apps:** iOS/iPadOS IPA packages are not supported. They rely on Apple's platform, signing and runtime infrastructure.
-
-## Repository layout
-
+```json
+{
+  "format": "nexus-react-app",
+  "version": 1,
+  "id": "hello-world",
+  "name": "Hello World",
+  "icon": "✨",
+  "description": "A sample app",
+  "screen": {
+    "type": "column",
+    "children": [
+      { "type": "heading", "text": "Hello from NEXUS" },
+      { "type": "text", "text": "This app was installed from a .react package." }
+    ]
+  }
+}
 ```
-janios/
-├── kernel/       # Independent AArch64 kernel bring-up
-├── src/          # Qt mobile-shell entry point
-├── qml/          # Qt Quick mobile-shell UI
-└── web/          # Browser companion on branch webb
-```
 
-JanOS is an independent project and is not affiliated with Apple or Google. It does not include proprietary iOS or Android source code.
+Installed app manifests are stored locally in the browser. This is a web desktop simulation, not a bootable operating system. Microsoft sign-in is simulated and does not authenticate with Microsoft. Fireworks connectivity requires a compatible endpoint and a user-provided API key.
