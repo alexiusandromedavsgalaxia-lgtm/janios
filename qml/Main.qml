@@ -14,6 +14,7 @@ ApplicationWindow {
 
     property bool controlCenterOpen: false
     property bool notificationsOpen: false
+    property bool appSwitcherOpen: false
     property bool locked: true
     property bool appDrawerOpen: false
     property bool settingsOpen: false
@@ -354,6 +355,17 @@ ApplicationWindow {
             Text { text: "About"; color: "#172033"; font.pixelSize: 18; font.bold: true }
             Text { text: "JanOS 15\nVersion 0.1.0\nAn independent mobile UI experiment."; color: "#687386"; font.pixelSize: 13; lineHeight: 1.35 }
             Item { Layout.fillHeight: true }
+        }
+    }
+
+
+    AppSwitcher {
+        z: 9
+        visible: window.appSwitcherOpen
+        onDismissed: window.appSwitcherOpen = false
+        onAppSelected: function(appName) {
+            window.appSwitcherOpen = false
+            window.showToast(appName + " · vista de aplicación")
         }
     }
 
