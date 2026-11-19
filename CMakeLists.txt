@@ -21,6 +21,8 @@ qt_add_qml_module(janios
     VERSION 1.0
     QML_FILES
         qml/Main.qml
+        qml/LockScreen.qml
+        qml/NotificationShade.qml
 )
 
 target_link_libraries(janios
