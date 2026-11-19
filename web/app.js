@@ -50,7 +50,7 @@ screen.addEventListener("click",e=>{let b=e.target.closest("[data-action],[data-
 screen.addEventListener("change",e=>{let k=e.target.dataset.toggle;if(k){state[k]=e.target.checked;save()}if(e.target.id==="theme-switch"){state.darkMode=e.target.checked;save();theme()}});
 overlays.addEventListener("click",e=>{let b=e.target.closest("[data-action],[data-app],[data-toggle]");if(!b)return;if(b.dataset.action)act(b.dataset.action);if(b.dataset.app){overlays.innerHTML="";overlay=null;renderApp(b.dataset.app)}if(b.dataset.toggle){state[b.dataset.toggle]=!state[b.dataset.toggle];save();showOverlay(overlay)}});
 overlays.addEventListener("input",e=>{if(e.target.id==="brightness"){state.brightness=Number(e.target.value);save()}});
-$("#status-time").onclick=()=>showOverlay("notifications");
+$("#status-time").onclick=()=>showOverlay("notifications");$("#control-toggle").onclick=()=>showOverlay("control");
 $("#home-indicator").onclick=()=>{if(overlay==="lock"){act("unlock");return}if(overlay){overlays.innerHTML="";overlay=null;return}showOverlay("switcher")};
 let touchY=null;device.addEventListener("touchstart",e=>{touchY=e.touches[0].clientY},{passive:true});device.addEventListener("touchend",e=>{if(touchY===null)return;let dy=e.changedTouches[0].clientY-touchY;if(touchY<48&&dy>55)showOverlay("notifications");else if(touchY>device.clientHeight-70&&dy< -45){if(overlay==="lock")act("unlock");else if(overlay){overlays.innerHTML="";overlay=null}else showOverlay("switcher")}touchY=null},{passive:true});
 setInterval(()=>{let t=$("#status-time");t.textContent=new Date().toLocaleTimeString([],{hour:"numeric",minute:"2-digit"});lockClock()},10000);
