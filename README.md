@@ -10,7 +10,10 @@ JanOS 15 is an original mobile interface project written in C++ with Qt 6 and Qt
 - Status bar with live clock
 - App grid and dock
 - Swipe-up style app drawer interaction
-- Control Center panel with working toggles
+- Control Center panel with interactive demo toggles
+- Lock screen with clock, date and unlock action
+- Notification shade with sample notification cards
+- Recent-app switcher with selectable app cards
 - Settings panel with theme and wallpaper controls
 - Responsive layouts for portrait mobile screens
 
@@ -39,8 +42,8 @@ janios/
 ```
 
 ## Roadmap
-1. Lock screen and notification shade
-2. App switcher and gesture navigation
-3. Settings pages and persistent preferences
-4. Built-in demo apps (Phone, Messages, Photos, Camera, Browser)
-5. Android packaging and device testing
+1. Add richer settings pages and persistent preferences
+2. Build individual demo app screens (Phone, Messages, Photos, Camera, Browser)
+3. Improve touch gestures and accessibility
+4. Add Android packaging configuration and device testing
+5. Add real app lifecycle only where supported by the host platform
